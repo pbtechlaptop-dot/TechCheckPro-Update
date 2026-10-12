@@ -1,2 +1,2 @@
-- Update now saves to original USB location
+- Update now saves to original location
 - Auto time sync on startup
