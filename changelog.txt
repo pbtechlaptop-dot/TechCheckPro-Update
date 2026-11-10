@@ -1,2 +1,6 @@
-- Update now saves to original location
-- Auto time sync on startup
+- Testing & Diagnostics buttons turn green when clicked (track completed steps)
+- Export SN split into USB and SMB buttons
+- USB export: auto-detects USB location (no longer fixed to D:\)
+- USB export: row number added, newest entry always on top
+- USB export: date and time added after battery info
+- Battery Health simplified to Good (>=70%) or Fair (<70%)
