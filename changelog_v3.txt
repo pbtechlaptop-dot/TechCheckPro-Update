@@ -1,3 +1,4 @@
+- Sub-windows: tab headers and disabled buttons (Scan / Install Selected) are readable in the dark theme
 - Camera now shows Found in Devices & Peripherals for cameras with any name (e.g. ACER HD User Facing)
 - USB Drive no longer shows Connected after the USB was ejected (shows again when plugged back in)
 - Update check keeps watching: if the PC is offline at startup, it checks as soon as the internet is connected
