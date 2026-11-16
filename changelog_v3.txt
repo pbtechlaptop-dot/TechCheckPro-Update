@@ -1,2 +1,2 @@
-- New WPF interface: Overview / Testing / Diagnostics / System Setting tabs, dark theme by default (moon/sun button switches)
+- New WPF interface: Overview / Testing / Diagnostics / System Setting tabs
 - USB Storage reject button
