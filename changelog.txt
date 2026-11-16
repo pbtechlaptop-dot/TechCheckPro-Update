@@ -1,2 +1,1 @@
-- Testing & Diagnostics buttons turn green when clicked (track completed steps)
-- 
+- New TechCheckPro you can try. (TechCheckPro.exe on USB)
