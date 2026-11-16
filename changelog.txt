@@ -1,1 +1,1 @@
-- New TechCheckPro you can try. (TechCheckPro.exe on USB)
+- Offers to download the new TechCheck Pro v3 (saved as TechCheckPro.exe next to this tool; this tool keeps working)
