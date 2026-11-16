@@ -1,2 +1,18 @@
-- New WPF interface: Overview / Testing / Diagnostics / System Setting tabs
-- USB Storage reject button
+- Camera now shows Found in Devices & Peripherals for cameras with any name (e.g. ACER HD User Facing)
+- USB Drive no longer shows Connected after the USB was ejected (shows again when plugged back in)
+- Update check keeps watching: if the PC is offline at startup, it checks as soon as the internet is connected
+- Devices & Peripherals: click USB Drive (Connected) to eject the USB drive safely
+- New WPF interface: Overview / Testing / Diagnostics / System Setting tabs, dark theme by default (moon/sun button switches)
+- Quick Tests and Tools panels: click a tile once to mark it tested (green), click again to reset
+- Test Checklist (Pass / Fail) added to Quick Tests and Testing
+- NVMe / SSD Health and Battery Health are now separate buttons
+- Hardware info loads in steps: much faster startup
+- Hardware & System: Battery first, one colour per row, long values collapse with an expand arrow
+- Battery shows Good (>=70%) or Fail (<70%, red); banner battery text is green when charging, red when discharging
+- Runs from a local copy and removes it, temp files and the Assembly Wi-Fi profile on close, shutdown or restart
+- Enrollment check: asks to connect Wi-Fi when offline, also checks the Autopilot profile file
+- Windows status tile opens Settings > System > Activation
+- Sysprep lets you choose Reboot or Shutdown
+- Lenovo model name fixed (shows the friendly name, e.g. Lenovo V14 G5 IRL)
+- Winget Upgrade, Device Manager and Drivers & Windows Update (scan / install) added or restored
+- Auto update from GitHub (version_v3.txt, changelog_v3.txt)
