@@ -1,3 +1,5 @@
+- Internet tile: when Windows hides the SSID, use the Windows network profile name instead of just 'Wi-Fi'
+- Internet tile: Wi-Fi name now also shown on non-English Windows; falls back to 'Connected (Wi-Fi)' when Windows hides the name
 - Forget Wi-Fi tile now says 'Remove profiles' and removes Assembly + all temporary profiles added by the tool (disconnects only if connected to one of them); Temporary Wi-Fi list marks the connected one
 - Forget Wi-Fi no longer disconnects a different Wi-Fi: it only disconnects when connected to Assembly
 - Internet tile shows the connected Wi-Fi name, e.g. Connected (Assembly)
