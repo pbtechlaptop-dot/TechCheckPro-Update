@@ -1,3 +1,10 @@
+- Forget Wi-Fi tile now says 'Remove profiles' and removes Assembly + all temporary profiles added by the tool (disconnects only if connected to one of them); Temporary Wi-Fi list marks the connected one
+- Forget Wi-Fi no longer disconnects a different Wi-Fi: it only disconnects when connected to Assembly
+- Internet tile shows the connected Wi-Fi name, e.g. Connected (Assembly)
+- Temporary Wi-Fi Profile: scan now asks the Wi-Fi adapter to scan and retries (fixes 'No networks found'); shows Windows' message if still empty
+- Tools: 'Test Checklist' tile replaced by Touch test; new built-in full-screen touch test (multi-touch trails, max touches, screen-coverage grid) instead of Paint
+- System Settings: 'Assembly Wi-Fi' card renamed Wi-Fi Settings, new Temporary Wi-Fi Profile (scan, connect, all profiles deleted on exit / shutdown / restart)
+- USB Test: no more white flashing (device scan runs in the background, rows only redrawn when something changes)
 - Devices & Peripherals: added Touch monitor (under Camera) and BitLocker status (under USB Mouse)
 - Enrollment check: 'Unable to verify' when core reads fail (no false Clean), reads AutopilotConfigurationFile.json + Autopilot event log, DeviceAuthStatus / TenantId / PartOfDomain
 - Enrollment check connects the Assembly Wi-Fi automatically when the PC is offline
