@@ -1,3 +1,5 @@
+- Restart to UEFI: if the PC cannot restart into the firmware (error 203) the tool stays open, retries, and offers a normal restart; cleanup only runs after the reboot was accepted
+- Restart / Restart to UEFI: the app now starts the reboot itself (5 s delay) instead of leaving it to the cleanup script, so the PC always restarts; shows the error if shutdown.exe fails
 - Internet tile: when Windows hides the SSID, use the Windows network profile name instead of just 'Wi-Fi'
 - Internet tile: Wi-Fi name now also shown on non-English Windows; falls back to 'Connected (Wi-Fi)' when Windows hides the name
 - Forget Wi-Fi tile now says 'Remove profiles' and removes Assembly + all temporary profiles added by the tool (disconnects only if connected to one of them); Temporary Wi-Fi list marks the connected one
