@@ -1,3 +1,4 @@
+- Diagnostics: new Command Line (Administrator) row with CMD and PowerShell buttons
 - Enrollment: Autopilot event log check only uses events from this PC and ignores 'not found' lines (fixes false Enrolled from old image events)
 - Restart to UEFI: if the PC cannot restart into the firmware (error 203) the tool stays open, retries, and offers a normal restart; cleanup only runs after the reboot was accepted
 - Restart / Restart to UEFI: the app now starts the reboot itself (5 s delay) instead of leaving it to the cleanup script, so the PC always restarts; shows the error if shutdown.exe fails
