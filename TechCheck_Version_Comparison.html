@@ -1,0 +1,264 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>TechCheck Version Comparison</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap">
+<style>
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --muted: #64748b;
+  --ink: #0f172a;
+  --accent: #2b6aeb;
+  --green: #16a34a;
+  --green-bg: #dcfce7;
+  --yellow: #d97706;
+  --yellow-bg: #fef3c7;
+  --red: #dc2626;
+  --red-bg: #fee2e2;
+  --new-bg: #eff6ff;
+  --new-border: #bfdbfe;
+  --missing-bg: #fefce8;
+  --missing-border: #fde68a;
+  --header-h: #1e3a5f;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f172a; --surface: #1e293b; --border: #334155;
+    --muted: #94a3b8; --ink: #f1f5f9; --accent: #60a5fa;
+    --green: #4ade80; --green-bg: #14532d; --yellow: #fbbf24;
+    --yellow-bg: #451a03; --red: #f87171; --red-bg: #450a0a;
+    --new-bg: #1e3a5f; --new-border: #1d4ed8;
+    --missing-bg: #3b2f00; --missing-border: #92400e;
+    --header-h: #93c5fd; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f172a; --surface: #1e293b; --border: #334155;
+  --muted: #94a3b8; --ink: #f1f5f9; --accent: #60a5fa;
+  --green: #4ade80; --green-bg: #14532d; --yellow: #fbbf24;
+  --yellow-bg: #451a03; --red: #f87171; --red-bg: #450a0a;
+  --new-bg: #1e3a5f; --new-border: #1d4ed8;
+  --missing-bg: #3b2f00; --missing-border: #92400e;
+  --header-h: #93c5fd; color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--ink);
+  padding-block: 24px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1 { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 4px; color: var(--ink); }
+.subtitle { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+.leg { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--muted); }
+.dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.dot-match  { background: var(--green); }
+.dot-new    { background: var(--accent); }
+.dot-miss   { background: var(--yellow); }
+.dot-change { background: #a855f7; }
+.wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); }
+table { width: 100%; border-collapse: collapse; min-width: 640px; }
+thead th {
+  padding: 10px 10px;
+  background: var(--header-h);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+thead th:first-child { border-radius: 9px 0 0 0; text-align: center; }
+thead th:last-child  { border-radius: 0 9px 0 0; }
+.section-row td {
+  background: var(--bg);
+  padding: 7px 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+tbody tr:not(.section-row) td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.5;
+}
+tbody tr:last-child td { border-bottom: none; }
+.col-num     { width: 36px; text-align: center; color: var(--muted); font-size: 12px; font-weight: 600; }
+.col-feature { width: 20%; font-weight: 500; }
+.col-v288    { width: 31%; }
+.col-v290    { width: 31%; }
+.col-status  { width: 13%; text-align: center; }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600;
+  white-space: nowrap;
+}
+.badge-match   { background: var(--green-bg);   color: var(--green); }
+.badge-new     { background: var(--new-bg);     color: var(--accent); border: 1px solid var(--new-border); }
+.badge-missing { background: var(--missing-bg); color: var(--yellow); border: 1px solid var(--missing-border); }
+.badge-changed { background: #f3e8ff; color: #7c3aed; border: 1px solid #ddd6fe; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .badge-changed { background: #2e1065; color: #c084fc; border-color: #4c1d95; }
+}
+:root[data-theme="dark"] .badge-changed { background: #2e1065; color: #c084fc; border-color: #4c1d95; }
+.note { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.highlight { color: var(--accent); font-weight: 600; }
+.warn { color: var(--yellow); }
+.ok { color: var(--green); }
+.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 20px; }
+.scard { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+.scard-num { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; line-height: 1; }
+.scard-label { font-size: 11px; color: var(--muted); margin-top: 3px; }
+</style>
+
+<h1>TechCheck Pro — Version Comparison</h1>
+<p class="subtitle">v2.8.8 / v2.8.9 (WinForms, production) vs v3.1.9 (WPF)</p>
+
+<div class="summary">
+  <div class="scard"><div class="scard-num ok">37</div><div class="scard-label">Features matched</div></div>
+  <div class="scard"><div class="scard-num highlight">31</div><div class="scard-label">New in v3.x</div></div>
+  <div class="scard"><div class="scard-num warn">0</div><div class="scard-label">Missing / not ported</div></div>
+  <div class="scard"><div class="scard-num" style="color:#7c3aed">14</div><div class="scard-label">Changed / different</div></div>
+</div>
+
+<div class="legend">
+  <div class="leg"><span class="dot dot-match"></span> Same as v2.8.8</div>
+  <div class="leg"><span class="dot dot-new"></span> New in v3.0.x</div>
+  <div class="leg"><span class="dot dot-miss"></span> Missing in v2.9.0</div>
+  <div class="leg"><span class="dot dot-change"></span> Changed behaviour</div>
+</div>
+
+<div class="wrap">
+<table>
+  <thead>
+    <tr>
+      <th class="col-num">#</th>
+      <th class="col-feature">Feature / Area</th>
+      <th class="col-v288">v2.8.8 (WinForms)</th>
+      <th class="col-v290">v3.1.9 (WPF)</th>
+      <th class="col-status">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr class="section-row"><td colspan="5">UI &amp; Layout</td></tr>
+    <tr><td class="col-num">1</td><td class="col-feature">Framework</td><td>WinForms (.NET 4.8), dark theme, single window</td><td>WPF (.NET 4.8), dark / light theme, tabbed navigation</td><td><span class="badge badge-changed">Changed</span></td></tr>
+    <tr><td class="col-num">2</td><td class="col-feature">Navigation</td><td>All content in one scrollable window; Testing / Diagnostics / System cards always visible side by side</td><td>Bottom nav bar: Overview / Testing / Diagnostics / System Setting tabs; only one tab visible at a time</td><td><span class="badge badge-changed">Changed</span></td></tr>
+    <tr><td class="col-num">3</td><td class="col-feature">Hero / header bar</td><td>Top bar: TECHCHECK PRO + version + Battery + Model + SN + Time all as labels; status row below (Speaker / Mic / Secure Boot / Wi-Fi / BT / Internet / TPM / USB etc.)</td><td>Blue hero card (fixed 92 px): logo + version badge, model, Serial, Battery (green when charging / AC, red when discharging), CPU / NVMe temp, time; Shutdown / Restart / Refresh / UEFI / theme buttons on the title row</td><td><span class="badge badge-changed">Changed</span></td></tr>
+    <tr><td class="col-num">4</td><td class="col-feature">Theme</td><td>Dark (navy/slate), Cyan accent, single palette</td><td>Dark by default (navy/slate, same bright per-row colours as the old tool) or light (white cards, blue accent); switch with the moon / sun button</td><td><span class="badge badge-changed">Changed</span></td></tr>
+
+    <tr class="section-row"><td colspan="5">Data Display</td></tr>
+    <tr><td class="col-num">5</td><td class="col-feature">Model name</td><td>Header label (top bar)</td><td>Hero card (large bold text)</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">6</td><td class="col-feature">Serial number</td><td>Header label</td><td>Hero card meta row</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">7</td><td class="col-feature">Battery status</td><td>Shows %, charging state (Charging / AC Connected / Discharging / Full)</td><td>Same — now also shows ⚡ for Charging and handles code 11 (Partially Charged)</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">8</td><td class="col-feature">CPU temperature</td><td>Top status row: "CPU: 30 °C  NVMe: -- °C"</td><td>Hero meta row: "CPU: 30 °C   NVMe: -- °C"; shows both CPU and NVMe</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">9</td><td class="col-feature">NVMe temperature</td><td class="ok">✓ Shown in top bar alongside CPU</td><td class="ok">✓ Shown alongside CPU in hero meta row (via MSFT_StorageReliabilityCounter)</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">10</td><td class="col-feature">NZ time (clock)</td><td>Updates every 1 second via clockTimer</td><td>Updates every 1 second via _clockTimer + Dispatcher.Invoke</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">11</td><td class="col-feature">Windows OS / activation</td><td>Shown in OS activation card</td><td>Shown in Windows status tile (Activated / Not Activated)</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">12</td><td class="col-feature">Internet status</td><td>Top status row label</td><td>Status tile (Connected / No Internet)</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">13</td><td class="col-feature">Secure Boot</td><td>Top status row label</td><td>Status tile (On / Off)</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">14</td><td class="col-feature">Driver issues</td><td>Driver label clickable — opens driver issue list</td><td>Drivers status tile (All OK / N issues) — clickable; opens Driver Issues tab (red/yellow rows by error code) + full Windows Update tab (Scan / Select All / Install Selected, ported from v2.8.8)</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">15</td><td class="col-feature">Hardware specs panel</td><td>RichTextBox (Battery, Processor, RAM, Graphics, Resolution, Storage, OS) in dark colours</td><td>Hardware &amp; System card: Battery, CPU, RAM, GPU, Storage, Display, Camera, OS, Mainboard/BIOS, Serial. Rows fill in as they load; long values (several drives / Windows licences) show one line plus a &#9662; button to expand</td><td><span class="badge badge-changed">Changed</span></td></tr>
+    <tr><td class="col-num">16</td><td class="col-feature">Devices &amp; Peripherals</td><td>Top status row labels; refreshed every 5 s</td><td>Dedicated 2-column card refreshed every 5 s: TPM, Speaker, Microphone, Wi-Fi, Camera, Touch monitor | Enrollment, Bluetooth, USB Drive, USB Keyboard, USB Mouse, BitLocker (Off / On / encrypting). Click USB Drive while it shows Connected to eject</td><td><span class="badge badge-changed">Changed</span></td></tr>
+    <tr><td class="col-num">17</td><td class="col-feature">User account label</td><td class="ok">✓ Shown in status row ("OEM" / domain user)</td><td>Nav band right shows username</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">18</td><td class="col-feature">Last Sync time</td><td>Top status row label</td><td>Nav band right label</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">19</td><td class="col-feature">Monitor hours</td><td class="ok">✓ "Monitor Hours" button in Diagnostics</td><td class="ok">✓ "Monitor Hours" button in Diagnostics (DDC/CI)</td><td><span class="badge badge-match">Same</span></td></tr>
+
+    <tr class="section-row"><td colspan="5">Auto-Refresh &amp; Timers</td></tr>
+    <tr><td class="col-num">20</td><td class="col-feature">Status refresh interval</td><td class="ok">Every 5 seconds (refreshTimer)</td><td class="ok">Every 5 seconds (_refreshTimer)</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">21</td><td class="col-feature">What refreshes automatically</td><td>Internet, USB disk/KB/mouse, Wi-Fi, BT, speaker, mic, TPM, temp, battery, secure boot, drivers</td><td>Internet, USB disk/KB/mouse, Wi-Fi, BT, speaker, mic, TPM, camera, temp, battery + full Devices &amp; Peripherals panel rebuild</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">22</td><td class="col-feature">Clock update</td><td>Every 1 second</td><td>Every 1 second (via Dispatcher.Invoke)</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">23</td><td class="col-feature">Auto time sync on startup</td><td class="ok">✓ Silently syncs NZ time 2s after startup</td><td class="ok">✓ SyncAucklandTimeOnStartup() called on Window_Loaded (silent, background)</td><td><span class="badge badge-match">Same</span></td></tr>
+
+    <tr class="section-row"><td colspan="5">Testing Features</td></tr>
+    <tr><td class="col-num">24</td><td class="col-feature">Speaker test</td><td>Button + volume slider (TrackBar, default 50)</td><td>Button + volume slider (default 80); sub-window with status label</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">25</td><td class="col-feature">Microphone test</td><td>3-second mic test button + mic monitor window</td><td>Quick tile: records 3s then auto-plays back (MCI waveaudio, same as v2.8.8; tile shows Recording… / Playing back… / Done ✓ / Failed); Testing tab opens full mic monitor window</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">26</td><td class="col-feature">Keyboard test</td><td>Full visual keyboard layout (WinForms Canvas), low-level hook, keys light up</td><td>Full visual keyboard layout (WPF Canvas), low-level hook (key-down + key-up, PrtSc works), keys flash dark green then stay green-grey; mouse panel placed below the space-bar row; swallows keys so Enter / arrows don't trigger main-window buttons; light theme</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">27</td><td class="col-feature">Camera test</td><td>Camera preview window</td><td>Quick test tile — ported DirectShow preview window (Next Camera / Refresh / Windows Camera), single reusable window, resizes with window; falls back to Windows Camera app if preview fails</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">28</td><td class="col-feature">USB test</td><td>USB test sub-window</td><td>Quick test tile — USB Test ported from v2.8.8: devices on the same physical port (incl. USB2/USB3 companion port) merge into one row; Debug Info button writes %TEMP%\TechCheckPro_usb_debug.txt; light theme</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">29</td><td class="col-feature">Time sync</td><td>Button in Testing + auto silent sync on startup</td><td>Quick test tile + Time Sync button in Testing tab (manual only)</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">30</td><td class="col-feature">Enrollment check</td><td>Button in Testing; result shown as label</td><td>Quick Tests tile + Diagnostics button. Reads dsregcmd (join state, DeviceAuthStatus, TenantId), domain membership, MDM, Autopilot profile files and the Autopilot event log (only events written by this PC, &quot;not found&quot; lines ignored). Shows <b>Unable to verify</b> instead of a false Clean when a core read fails. When offline it connects the default Wi-Fi first</td><td><span class="badge badge-changed">Changed</span></td></tr>
+    <tr><td class="col-num">31</td><td class="col-feature">Export SN (USB)</td><td class="ok">✓ Appends to SN_List.txt in the folder the exe was opened from (row no., SN, TOUCH, battery, date; skips duplicates; newest on top)</td><td>Same behaviour and file name (SN_List.txt, same columns); battery column uses Good / Fail (70%); Quick test tile + button in Testing tab</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">32</td><td class="col-feature">Export SN (SMB)</td><td class="ok">&#10003; Export to SMB network share (fixed settings, mapped drive)</td><td class="ok">&#10003; Uses the selected Share profile: signs in with its user / password and writes straight to <code>\\server\folder</code> (no drive letter); clear messages for a missing folder or wrong password</td><td><span class="badge badge-changed">Changed</span></td></tr>
+    <tr><td class="col-num">33</td><td class="col-feature">Dead Pixel Test</td><td class="ok">✓ Full-screen dead pixel form</td><td>Dead Pixel Test in Testing tab</td><td><span class="badge badge-match">Same</span></td></tr>
+
+    <tr class="section-row"><td colspan="5">Diagnostics</td></tr>
+    <tr><td class="col-num">34</td><td class="col-feature">Health Check</td><td class="ok">✓ NVMe health, power-on hours, wear, temp, storage speed</td><td>Split in two (same data as v2.8.8): <b>NVMe / SSD Health</b> (SMART, power-on hours, read/written, life used, wear, temp) and <b>Battery Health</b> (design / full capacity, health %, cycle count, legend) — each as a Quick Tests tile and a Diagnostics button</td><td><span class="badge badge-changed">Changed</span></td></tr>
+    <tr><td class="col-num">35</td><td class="col-feature">Storage speed test</td><td class="ok">✓ StorageTestForm</td><td class="ok">✓ "Storage Speed Test" in Testing tab (light theme)</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">36</td><td class="col-feature">Winget upgrade</td><td class="ok">✓ RunWingetUpgrade button</td><td class="ok">✓ Quick Tests tile (row 3) + button in System tab; 2 passes, admin; finds winget.exe path, warns if missing; command window closes after Enter like v2.8.8</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">37</td><td class="col-feature">Test Checklist</td><td><span class="ok">&#10003; ChecklistForm</span></td><td class="ok">Testing tab card; Pass / Fail per item, click again to clear, Reset All, summary line (ported). The Overview Tools tile that used to open it is now Touch test</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">38</td><td class="col-feature">Mic Monitor (standalone)</td><td class="ok">✓ "Start Mic Monitor" in Diagnostics</td><td>Accessible via Mic test flow</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">39</td><td class="col-feature">Web Tests (UFO/KB/Webcam)</td><td class="ok">✓ Opens browser links</td><td class="ok">✓ "Open Web Tests" in Testing tab</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">40</td><td class="col-feature">Share Settings</td><td class="ok">&#10003; SMB share config UI (one fixed set: path, user, password, update path)</td><td class="ok">&#10003; Share profiles: several saved sets, one default; built-in <b>Blancco</b> profile with the old tool&#39;s settings; fields Share IP (with Test), user, password (masked, stored encrypted), file name, Shared Folder (with Search). Saved in share_settings.txt next to the exe, created only after a change</td><td><span class="badge badge-changed">Changed</span></td></tr>
+
+    <tr class="section-row"><td colspan="5">System Setting</td></tr>
+    <tr><td class="col-num">41</td><td class="col-feature">Shutdown / Restart / UEFI</td><td>Buttons in top header (powerRow)</td><td>Buttons in hero card (Shutdown / Restart / ⟳ Refresh / UEFI)</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">42</td><td class="col-feature">Scan Drivers</td><td class="ok">✓ System Setting card</td><td>System Setting tab</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">43</td><td class="col-feature">Wi-Fi Settings / Connect / Forget</td><td class="ok">&#10003; Connect / Forget Assembly Wi-Fi (fixed name and password)</td><td>Wi-Fi Settings card: <b>Wi-Fi Profiles</b> (saved list with a default one, Scan, Test), Connect Wi-Fi (default profile), <b>Disconnect Wi-Fi</b> (removes the profiles the tool added), Temporary Wi-Fi Profile. Built-in default is still Assembly</td><td><span class="badge badge-changed">Changed</span></td></tr>
+    <tr><td class="col-num">44</td><td class="col-feature">Windows Update / Date &amp; Time / Device Manager</td><td class="ok">✓ System Setting card</td><td>System Setting tab</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">45</td><td class="col-feature">Sysprep / Show SID</td><td><span class="ok">&#10003; System Setting card; Sysprep asks Reboot / Shutdown</span></td><td class="ok">Checks OOBE / Audit Mode and pending restarts, detects blockers (e.g. the per-user Winget package) and offers to remove them, runs <code>/generalize /oobe /quit /quiet</code>, then verifies the result (ImageState + logs) before offering <b>Shutdown only</b> (no Reboot, so the image is not used up). Removes the local copy and the Wi-Fi profiles it added before shutting down</td><td><span class="badge badge-changed">Changed</span></td></tr>
+    <tr><td class="col-num">46</td><td class="col-feature">Check for Update</td><td><span class="ok">&#10003; Auto-checks 4 s after startup, then when the network comes up (event + 30 s poll); manual button; copies EXE to LocalAppData and cleans up old versions</span></td><td class="ok">Same flow with its own files on GitHub: <code>version_v3.txt</code>, <code>changelog_v3.txt</code>, <code>TechCheckPro.exe</code>. Checks 4 s after start, keeps watching until the PC is online (network events + 15 s poll, stops after the version file is read), 3-part version compare, only a real exe may replace the USB copy, writes back to the original launch folder</td><td><span class="badge badge-match">Same</span></td></tr>
+
+    <tr class="section-row"><td colspan="5">New in v3.x (not in v2.8.8)</td></tr>
+    <tr><td class="col-num">47</td><td class="col-feature">UI framework</td><td>WinForms</td><td class="highlight">WPF — XAML styles, smooth gradients, hero card, animated nav</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">48</td><td class="col-feature">Tab navigation</td><td>All in one window</td><td class="highlight">Bottom nav bar (Overview / Testing / Diagnostics / System Setting)</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">49</td><td class="col-feature">Hero card</td><td>Plain label row</td><td class="highlight">Blue gradient card with ECG icon, computer art, action buttons</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">50</td><td class="col-feature">Quick Tests grid</td><td>Buttons in Testing card</td><td class="highlight">Overview page split in two panels: <b>Quick Tests</b> (Speaker, Microphone, Keyboard, Camera, USB Test, Enrollment) and <b>Tools</b> (Export SN, Time Sync, Connect Wi-Fi, Winget Upgrade, NVMe / SSD Health, Forget Wi-Fi, Test Checklist, Battery Health, Device Manager) &mdash; 15 tiles. Click once &rarr; tile turns green (tested), click again &rarr; reset</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">51</td><td class="col-feature">Status tile row</td><td>Labels in header</td><td class="highlight">4 inline tiles: Internet · Windows · Drivers · Secure Boot</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">52</td><td class="col-feature">Periph badge panel</td><td>Labels in status row</td><td class="highlight">Devices &amp; Peripherals card with colored dot badges</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">53</td><td class="col-feature">EXE icon</td><td>Default / custom .ico</td><td class="highlight">Blue rounded icon with ECG waveform (16/32/48px)</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">54</td><td class="col-feature">Scroll layout</td><td>Fixed TableLayoutPanel rows</td><td class="highlight">ScrollViewer per tab — content scrolls independently</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">55</td><td class="col-feature">Version label</td><td>Footer label bottom-right</td><td class="highlight">Version badge inside the hero card (read from the program, now v3.1.9); exe file version 3.1.9</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">56</td><td class="col-feature">Compact hero for small screens</td><td>—</td><td class="highlight">Hero banner fixed at 92 px, art scaled to fit, title and 4 buttons on one row; tighter page margins so 1080p @150% fits with less scrolling</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">57</td><td class="col-feature">Expandable hardware rows</td><td>—</td><td class="highlight">Multi-line values in Hardware &amp; System show one line + ▾ button to expand/collapse</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">58</td><td class="col-feature">Battery pass / fail colour</td><td>"Good" ≥70%, else "Fair" (always green)</td><td class="highlight">"Good" ≥70% (green), "Fail" &lt;70% (red)</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">59</td><td class="col-feature">Sub-window theme</td><td>Dark windows</td><td class="highlight">All sub-windows (USB, Storage, Camera, Keyboard, Health, Checklist, Drivers&hellip;) follow the chosen theme (dark by default); check boxes, tab headers, list headers and disabled buttons are readable in both themes</td><td><span class="badge badge-new">New</span></td></tr>
+
+    <tr><td class="col-num">60</td><td class="col-feature">Dark / light theme</td><td>&mdash;</td><td class="highlight">Dark by default; moon / sun button in the hero toggles; choice saved in share_settings.txt on the USB; windows are themed before they are shown (no white flash); Dead Pixel window is never themed</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">61</td><td class="col-feature">Page layout</td><td>One scrolling window</td><td class="highlight">Testing page 3 columns; Diagnostics and System Setting 2 columns; page side margins 8 px &mdash; no scrolling on 1080p @150%</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">62</td><td class="col-feature">Startup speed</td><td>All hardware shown at once, about 8 s after the window appears</td><td class="highlight">Parallel loading, each Hardware row fills in as it is ready (CPU / RAM about 0.4 s, OS about 2 s); one shared device-list query; TPM queried once; peripherals checked in parallel</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">63</td><td class="col-feature">Nothing left on the PC</td><td><span class="ok">&#10003; Local copy deleted on close</span></td><td class="highlight">Runs from a local copy; on close, Shutdown, Restart, UEFI, Sysprep or logoff it deletes the copy, temp files and every Wi-Fi profile the tool added (default, Wi-Fi Profiles and Temporary ones); Restart / UEFI start the reboot first and clean in parallel</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">64</td><td class="col-feature">USB Drive eject</td><td>&mdash;</td><td class="highlight">Click USB Drive when it shows Connected &#9167; &rarr; tick which USB drive(s) to eject (one drive is pre-ticked) &rarr; lock / dismount / eject; the USB the tool started from is marked; works during OOBE; shows Not found afterwards until the USB is unplugged and plugged back in</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">65</td><td class="col-feature">Windows status tile</td><td>Label only</td><td class="highlight">Click the Windows tile to open Settings &rarr; System &rarr; Activation</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">66</td><td class="col-feature">Device Manager tile</td><td>Button in System Setting</td><td class="highlight">Also a Tools tile on the Overview page</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">67</td><td class="col-feature">Model name (Lenovo)</td><td>Friendly name from ComputerSystemProduct.Version (e.g. Lenovo V14 G5 IRL)</td><td>Same logic ported (was showing the machine code 83HD)</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">68</td><td class="col-feature">Bottom bar text</td><td>CPU / NVMe temperature, user, last sync</td><td>IP address when online, &quot;Powered by Assembly&quot;, &quot;User: &lt;name&gt;&quot;, last sync (temperature stays in the hero)</td><td><span class="badge badge-changed">Changed</span></td></tr>
+    <tr><td class="col-num">69</td><td class="col-feature">Old tool &rarr; v3 hand-over (v2.8.9)</td><td>v2.8.8: updates itself only</td><td class="highlight">v2.8.9 offers to download TechCheck Pro v3 as <code>TechCheckPro.exe</code> next to the old exe (old tool keeps working); also offers newer v3 builds later. v2.8.9 exe, version.txt and changelog.txt are in GitHub_Upload\old_v2.8.9</td><td><span class="badge badge-new">New</span></td></tr>
+
+    <tr><td class="col-num">70</td><td class="col-feature">Camera detection (Devices &amp; Peripherals)</td><td>Matches camera keywords in device name and description</td><td>Same matching, plus anything Windows lists under &quot;Cameras&quot; (fixes names like &quot;ACER HD User Facing&quot; showing Not found)</td><td><span class="badge badge-match">Same</span></td></tr>
+
+    <tr class="section-row"><td colspan="5">New in v3.0.8 &ndash; v3.1.9</td></tr>
+    <tr><td class="col-num">71</td><td class="col-feature">Wi-Fi Profiles</td><td>&mdash; (one fixed Assembly Wi-Fi)</td><td class="highlight">System Setting &rarr; Wi-Fi Settings &rarr; Wi-Fi Profiles: save several Wi-Fi names with password and security (WPA2 / WPA3 / Open), choose the default, <b>Scan</b> nearby Wi-Fi, <b>Test</b> (button turns green when connected). Profiles are named after the Wi-Fi name; passwords stored encrypted; the built-in default is Assembly. Connect Wi-Fi and the Enrollment check use the default</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">72</td><td class="col-feature">Temporary Wi-Fi Profile</td><td>&mdash;</td><td class="highlight">Scan nearby Wi-Fi, connect with a password for one-off use; the profile is deleted when the tool closes, or on shutdown / restart</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">73</td><td class="col-feature">Disconnect Wi-Fi</td><td>Forget Assembly Wi-Fi</td><td class="highlight">Overview tile &quot;Disconnect Wi-Fi / Remove profiles&quot;: removes every Wi-Fi profile the tool added; only disconnects when the current Wi-Fi was added by the tool</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">74</td><td class="col-feature">Internet tile and IP</td><td>Connected / No Internet</td><td class="highlight">Internet tile shows <code>Connected (Wi-Fi name)</code>; the bottom bar shows the IP address when online</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">75</td><td class="col-feature">Touch monitor and BitLocker rows</td><td>&mdash;</td><td class="highlight">Devices &amp; Peripherals shows Touch monitor (Detected / Not found) and the BitLocker state of the system drive</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">76</td><td class="col-feature">Mainboard / BIOS</td><td>&mdash;</td><td class="highlight">One Hardware row: board maker + model (e.g. a DIY MSI board) and BIOS version + date</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">77</td><td class="col-feature">Touch test</td><td>Opened Paint</td><td class="highlight">Built-in full-screen test: every finger leaves a coloured trail, shows touches now / max at once, and a 16&times;9 grid turns green as each zone responds (finds dead zones)</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">78</td><td class="col-feature">Command Line (Administrator)</td><td>&mdash;</td><td class="highlight">Diagnostics row with CMD and PowerShell buttons; both open as administrator</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">79</td><td class="col-feature">Export SN result</td><td>SN, TOUCH, battery, file path</td><td class="highlight">The result window also shows the running number of the SN in SN_List.txt</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">80</td><td class="col-feature">Restart / Restart to UEFI</td><td>Cleanup script started the reboot last</td><td class="highlight">The app starts the reboot itself (5 s delay), retries, and if the PC cannot restart into the firmware (error 203) it stays open and offers a normal restart</td><td><span class="badge badge-changed">Changed</span></td></tr>
+    <tr><td class="col-num">81</td><td class="col-feature">Overview fit</td><td>Scrolls</td><td class="highlight">On a small screen (e.g. Full HD laptop with scaling) the whole Overview scales down automatically (not below 65 %) so it fits without a scroll bar</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">82</td><td class="col-feature">Update check</td><td>Checks at startup and when the network comes up</td><td>Same idea for v3 (4 s after start, network events and a 15 s poll, up to 4 failed tries); GitHub raw files are cached for a few minutes, so wait before testing a new upload</td><td><span class="badge badge-match">Same</span></td></tr>
+
+  </tbody>
+</table>
+</div>
+
+</body></html>
