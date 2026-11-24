@@ -1,3 +1,5 @@
+- Hardware & System: CPU row is now CPU / NPU
+- Microphone test: fixed the recording
 - Hardware & System: added Mainboard (maker + model); BIOS shows version and date
 - Eject USB: choose which USB drive to eject when several are connected
 - Wi-Fi Settings: added Wi-Fi Profiles (saved list with a default one); Forget Wi-Fi renamed Disconnect Wi-Fi
