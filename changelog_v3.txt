@@ -1,5 +1,4 @@
--  Export SN window shows the list number; IP address shown at the bottom when online
+- Wi-Fi Settings: added Wi-Fi Profiles (saved list with a default one); Forget Wi-Fi renamed Disconnect Wi-Fi
+- Export SN window shows the list number; IP address shown at the bottom when online
 - Diagnostics: new Command Line (Administrator) row with CMD and PowerShell buttons
 - Share & Network settings: added Profile function
-- Enrollment: Autopilot event log check only uses events from this PC and ignores 'not found' lines (fixes false Enrolled from old image events)
-- Restart to UEFI: if the PC cannot restart into the firmware (error 203) the tool stays open, retries, and offers a normal restart; cleanup only runs after the reboot was accepted
