@@ -125,10 +125,14 @@ tbody tr:last-child td { border-bottom: none; }
 .scard { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
 .scard-num { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; line-height: 1; }
 .scard-label { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.lang { position: fixed; top: 10px; right: 12px; z-index: 50; display: flex; gap: 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.lang button { font: inherit; font-size: 12px; font-weight: 600; padding: 5px 12px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+.lang button.on { background: var(--accent); color: #fff; }
 </style>
 
+<div class="lang"><button type="button" data-l="en">English</button><button type="button" data-l="zh">中文</button></div>
 <h1>TechCheck Pro — Version Comparison</h1>
-<p class="subtitle">v2.8.8 / v2.8.9 (WinForms, production) vs v3.1.9 (WPF)</p>
+<p class="subtitle">v2.8.8 / v2.8.9 (WinForms, production) vs v3.1.12 (WPF)</p>
 
 <div class="summary">
   <div class="scard"><div class="scard-num ok">37</div><div class="scard-label">Features matched</div></div>
@@ -151,7 +155,7 @@ tbody tr:last-child td { border-bottom: none; }
       <th class="col-num">#</th>
       <th class="col-feature">Feature / Area</th>
       <th class="col-v288">v2.8.8 (WinForms)</th>
-      <th class="col-v290">v3.1.9 (WPF)</th>
+      <th class="col-v290">v3.1.12 (WPF)</th>
       <th class="col-status">Status</th>
     </tr>
   </thead>
@@ -174,7 +178,7 @@ tbody tr:last-child td { border-bottom: none; }
     <tr><td class="col-num">12</td><td class="col-feature">Internet status</td><td>Top status row label</td><td>Status tile (Connected / No Internet)</td><td><span class="badge badge-match">Same</span></td></tr>
     <tr><td class="col-num">13</td><td class="col-feature">Secure Boot</td><td>Top status row label</td><td>Status tile (On / Off)</td><td><span class="badge badge-match">Same</span></td></tr>
     <tr><td class="col-num">14</td><td class="col-feature">Driver issues</td><td>Driver label clickable — opens driver issue list</td><td>Drivers status tile (All OK / N issues) — clickable; opens Driver Issues tab (red/yellow rows by error code) + full Windows Update tab (Scan / Select All / Install Selected, ported from v2.8.8)</td><td><span class="badge badge-match">Same</span></td></tr>
-    <tr><td class="col-num">15</td><td class="col-feature">Hardware specs panel</td><td>RichTextBox (Battery, Processor, RAM, Graphics, Resolution, Storage, OS) in dark colours</td><td>Hardware &amp; System card: Battery, CPU, RAM, GPU, Storage, Display, Camera, OS, Mainboard/BIOS, Serial. Rows fill in as they load; long values (several drives / Windows licences) show one line plus a &#9662; button to expand</td><td><span class="badge badge-changed">Changed</span></td></tr>
+    <tr><td class="col-num">15</td><td class="col-feature">Hardware specs panel</td><td>RichTextBox (Battery, Processor, RAM, Graphics, Resolution, Storage, OS) in dark colours</td><td>Hardware &amp; System card: Battery, CPU / NPU, RAM, GPU, Storage, Display, Camera, OS, Mainboard/BIOS, Serial. Rows fill in as they load; long values (several drives / Windows licences) show one line plus a &#9662; button to expand</td><td><span class="badge badge-changed">Changed</span></td></tr>
     <tr><td class="col-num">16</td><td class="col-feature">Devices &amp; Peripherals</td><td>Top status row labels; refreshed every 5 s</td><td>Dedicated 2-column card refreshed every 5 s: TPM, Speaker, Microphone, Wi-Fi, Camera, Touch monitor | Enrollment, Bluetooth, USB Drive, USB Keyboard, USB Mouse, BitLocker (Off / On / encrypting). Click USB Drive while it shows Connected to eject</td><td><span class="badge badge-changed">Changed</span></td></tr>
     <tr><td class="col-num">17</td><td class="col-feature">User account label</td><td class="ok">✓ Shown in status row ("OEM" / domain user)</td><td>Nav band right shows username</td><td><span class="badge badge-match">Same</span></td></tr>
     <tr><td class="col-num">18</td><td class="col-feature">Last Sync time</td><td>Top status row label</td><td>Nav band right label</td><td><span class="badge badge-match">Same</span></td></tr>
@@ -187,8 +191,8 @@ tbody tr:last-child td { border-bottom: none; }
     <tr><td class="col-num">23</td><td class="col-feature">Auto time sync on startup</td><td class="ok">✓ Silently syncs NZ time 2s after startup</td><td class="ok">✓ SyncAucklandTimeOnStartup() called on Window_Loaded (silent, background)</td><td><span class="badge badge-match">Same</span></td></tr>
 
     <tr class="section-row"><td colspan="5">Testing Features</td></tr>
-    <tr><td class="col-num">24</td><td class="col-feature">Speaker test</td><td>Button + volume slider (TrackBar, default 50)</td><td>Button + volume slider (default 80); sub-window with status label</td><td><span class="badge badge-match">Same</span></td></tr>
-    <tr><td class="col-num">25</td><td class="col-feature">Microphone test</td><td>3-second mic test button + mic monitor window</td><td>Quick tile: records 3s then auto-plays back (MCI waveaudio, same as v2.8.8; tile shows Recording… / Playing back… / Done ✓ / Failed); Testing tab opens full mic monitor window</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">24</td><td class="col-feature">Speaker test</td><td>Button + volume slider (TrackBar, default 50)</td><td>Button + volume slider that sets the real Windows volume (put back when the tool closes, so Overview and Testing speaker tests both follow it); left / right tones</td><td><span class="badge badge-match">Same</span></td></tr>
+    <tr><td class="col-num">25</td><td class="col-feature">Microphone test</td><td>3-second mic test button + mic monitor window</td><td>Quick tile: records 3s then auto-plays back (MCI waveaudio, same as v2.8.8; tile shows Recording… / Playing back… / Done ✓ / Failed); Testing tab opens a mic window that really records (real input level bar, Stop and play back, file deleted right after)</td><td><span class="badge badge-match">Same</span></td></tr>
     <tr><td class="col-num">26</td><td class="col-feature">Keyboard test</td><td>Full visual keyboard layout (WinForms Canvas), low-level hook, keys light up</td><td>Full visual keyboard layout (WPF Canvas), low-level hook (key-down + key-up, PrtSc works), keys flash dark green then stay green-grey; mouse panel placed below the space-bar row; swallows keys so Enter / arrows don't trigger main-window buttons; light theme</td><td><span class="badge badge-match">Same</span></td></tr>
     <tr><td class="col-num">27</td><td class="col-feature">Camera test</td><td>Camera preview window</td><td>Quick test tile — ported DirectShow preview window (Next Camera / Refresh / Windows Camera), single reusable window, resizes with window; falls back to Windows Camera app if preview fails</td><td><span class="badge badge-match">Same</span></td></tr>
     <tr><td class="col-num">28</td><td class="col-feature">USB test</td><td>USB test sub-window</td><td>Quick test tile — USB Test ported from v2.8.8: devices on the same physical port (incl. USB2/USB3 companion port) merge into one row; Debug Info button writes %TEMP%\TechCheckPro_usb_debug.txt; light theme</td><td><span class="badge badge-match">Same</span></td></tr>
@@ -219,12 +223,12 @@ tbody tr:last-child td { border-bottom: none; }
     <tr><td class="col-num">47</td><td class="col-feature">UI framework</td><td>WinForms</td><td class="highlight">WPF — XAML styles, smooth gradients, hero card, animated nav</td><td><span class="badge badge-new">New</span></td></tr>
     <tr><td class="col-num">48</td><td class="col-feature">Tab navigation</td><td>All in one window</td><td class="highlight">Bottom nav bar (Overview / Testing / Diagnostics / System Setting)</td><td><span class="badge badge-new">New</span></td></tr>
     <tr><td class="col-num">49</td><td class="col-feature">Hero card</td><td>Plain label row</td><td class="highlight">Blue gradient card with ECG icon, computer art, action buttons</td><td><span class="badge badge-new">New</span></td></tr>
-    <tr><td class="col-num">50</td><td class="col-feature">Quick Tests grid</td><td>Buttons in Testing card</td><td class="highlight">Overview page split in two panels: <b>Quick Tests</b> (Speaker, Microphone, Keyboard, Camera, USB Test, Enrollment) and <b>Tools</b> (Export SN, Time Sync, Connect Wi-Fi, Winget Upgrade, NVMe / SSD Health, Forget Wi-Fi, Test Checklist, Battery Health, Device Manager) &mdash; 15 tiles. Click once &rarr; tile turns green (tested), click again &rarr; reset</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">50</td><td class="col-feature">Quick Tests grid</td><td>Buttons in Testing card</td><td class="highlight">Overview page split in two panels: <b>Quick Tests</b> (Speaker, Microphone, Keyboard, Camera, USB Test, Enrollment) and <b>Tools</b> (Export SN, Time Sync, Connect Wi-Fi, Winget Upgrade, NVMe / SSD Health, Disconnect Wi-Fi, Touch test, Battery Health, Device Manager) &mdash; 15 tiles. Click once &rarr; tile turns green (tested), click again &rarr; reset</td><td><span class="badge badge-new">New</span></td></tr>
     <tr><td class="col-num">51</td><td class="col-feature">Status tile row</td><td>Labels in header</td><td class="highlight">4 inline tiles: Internet · Windows · Drivers · Secure Boot</td><td><span class="badge badge-new">New</span></td></tr>
     <tr><td class="col-num">52</td><td class="col-feature">Periph badge panel</td><td>Labels in status row</td><td class="highlight">Devices &amp; Peripherals card with colored dot badges</td><td><span class="badge badge-new">New</span></td></tr>
     <tr><td class="col-num">53</td><td class="col-feature">EXE icon</td><td>Default / custom .ico</td><td class="highlight">Blue rounded icon with ECG waveform (16/32/48px)</td><td><span class="badge badge-new">New</span></td></tr>
     <tr><td class="col-num">54</td><td class="col-feature">Scroll layout</td><td>Fixed TableLayoutPanel rows</td><td class="highlight">ScrollViewer per tab — content scrolls independently</td><td><span class="badge badge-new">New</span></td></tr>
-    <tr><td class="col-num">55</td><td class="col-feature">Version label</td><td>Footer label bottom-right</td><td class="highlight">Version badge inside the hero card (read from the program, now v3.1.9); exe file version 3.1.9</td><td><span class="badge badge-new">New</span></td></tr>
+    <tr><td class="col-num">55</td><td class="col-feature">Version label</td><td>Footer label bottom-right</td><td class="highlight">Version badge inside the hero card (read from the program, now v3.1.12); exe file version 3.1.12</td><td><span class="badge badge-new">New</span></td></tr>
     <tr><td class="col-num">56</td><td class="col-feature">Compact hero for small screens</td><td>—</td><td class="highlight">Hero banner fixed at 92 px, art scaled to fit, title and 4 buttons on one row; tighter page margins so 1080p @150% fits with less scrolling</td><td><span class="badge badge-new">New</span></td></tr>
     <tr><td class="col-num">57</td><td class="col-feature">Expandable hardware rows</td><td>—</td><td class="highlight">Multi-line values in Hardware &amp; System show one line + ▾ button to expand/collapse</td><td><span class="badge badge-new">New</span></td></tr>
     <tr><td class="col-num">58</td><td class="col-feature">Battery pass / fail colour</td><td>"Good" ≥70%, else "Fair" (always green)</td><td class="highlight">"Good" ≥70% (green), "Fail" &lt;70% (red)</td><td><span class="badge badge-new">New</span></td></tr>
@@ -243,7 +247,7 @@ tbody tr:last-child td { border-bottom: none; }
 
     <tr><td class="col-num">70</td><td class="col-feature">Camera detection (Devices &amp; Peripherals)</td><td>Matches camera keywords in device name and description</td><td>Same matching, plus anything Windows lists under &quot;Cameras&quot; (fixes names like &quot;ACER HD User Facing&quot; showing Not found)</td><td><span class="badge badge-match">Same</span></td></tr>
 
-    <tr class="section-row"><td colspan="5">New in v3.0.8 &ndash; v3.1.9</td></tr>
+    <tr class="section-row"><td colspan="5">New in v3.0.8 &ndash; v3.1.12</td></tr>
     <tr><td class="col-num">71</td><td class="col-feature">Wi-Fi Profiles</td><td>&mdash; (one fixed Assembly Wi-Fi)</td><td class="highlight">System Setting &rarr; Wi-Fi Settings &rarr; Wi-Fi Profiles: save several Wi-Fi names with password and security (WPA2 / WPA3 / Open), choose the default, <b>Scan</b> nearby Wi-Fi, <b>Test</b> (button turns green when connected). Profiles are named after the Wi-Fi name; passwords stored encrypted; the built-in default is Assembly. Connect Wi-Fi and the Enrollment check use the default</td><td><span class="badge badge-new">New</span></td></tr>
     <tr><td class="col-num">72</td><td class="col-feature">Temporary Wi-Fi Profile</td><td>&mdash;</td><td class="highlight">Scan nearby Wi-Fi, connect with a password for one-off use; the profile is deleted when the tool closes, or on shutdown / restart</td><td><span class="badge badge-new">New</span></td></tr>
     <tr><td class="col-num">73</td><td class="col-feature">Disconnect Wi-Fi</td><td>Forget Assembly Wi-Fi</td><td class="highlight">Overview tile &quot;Disconnect Wi-Fi / Remove profiles&quot;: removes every Wi-Fi profile the tool added; only disconnects when the current Wi-Fi was added by the tool</td><td><span class="badge badge-new">New</span></td></tr>
@@ -261,4 +265,145 @@ tbody tr:last-child td { border-bottom: none; }
 </table>
 </div>
 
+<script>
+(function () {
+  // Chinese text for every row: number -> [feature, v2.8.8 cell, v3 cell] (HTML allowed)
+  var ROWS = {
+    1: [`框架`, `WinForms (.NET 4.8),深色主題,單一視窗`, `WPF (.NET 4.8),深色 / 淺色主題,分頁導覽`],
+    2: [`導覽`, `所有內容在同一個可捲動視窗;Testing / Diagnostics / System 卡片一直並排顯示`, `底部導覽列:Overview / Testing / Diagnostics / System Setting 分頁;一次只顯示一頁`],
+    3: [`頂部標題列`, `頂部列:TECHCHECK PRO + 版本 + 電池 + 型號 + SN + 時間(全是文字標籤);下方狀態列(喇叭 / 麥克風 / Secure Boot / Wi-Fi / 藍牙 / Internet / TPM / USB 等)`, `藍色標題卡(固定 92 px):圖示 + 版本標籤、型號、序號、電池(充電或接電源為綠色,放電為紅色)、CPU / NVMe 溫度、時間;標題列上有 Shutdown / Restart / Refresh / UEFI / 主題按鈕`],
+    4: [`主題`, `深色(藏青 / 石板灰),青色強調,只有一種配色`, `預設深色(藏青 / 石板灰,每列用跟舊工具一樣的鮮明顏色)或淺色(白色卡片、藍色強調);用月亮 / 太陽按鈕切換`],
+    5: [`型號名稱`, `標題標籤(頂部列)`, `標題卡(粗體大字)`],
+    6: [`序號`, `標題標籤`, `標題卡的資訊列`],
+    7: [`電池狀態`, `顯示 %、充電狀態(Charging / AC Connected / Discharging / Full)`, `相同,另外充電時顯示 ⚡,並處理代碼 11(部分充電)`],
+    8: [`CPU 溫度`, `頂部狀態列:"CPU: 30 °C  NVMe: -- °C"`, `標題卡資訊列:"CPU: 30 °C   NVMe: -- °C";同時顯示 CPU 和 NVMe`],
+    9: [`NVMe 溫度`, `✓ 頂部列和 CPU 並排顯示`, `✓ 標題卡資訊列和 CPU 並排顯示(透過 MSFT_StorageReliabilityCounter)`],
+    10: [`紐西蘭時間(時鐘)`, `每 1 秒用 clockTimer 更新`, `每 1 秒用 _clockTimer + Dispatcher.Invoke 更新`],
+    11: [`Windows 系統 / 啟用`, `顯示在 OS 啟用卡片`, `顯示在 Windows 狀態圖示(Activated / Not Activated)`],
+    12: [`網路狀態`, `頂部狀態列標籤`, `狀態圖示(Connected / No Internet)`],
+    13: [`Secure Boot`, `頂部狀態列標籤`, `狀態圖示(On / Off)`],
+    14: [`驅動程式問題`, `驅動標籤可點擊,開啟驅動問題清單`, `Drivers 狀態圖示(All OK / N issues),可點擊;開啟驅動問題頁(依錯誤碼用紅 / 黃列顯示)和完整的 Windows Update 頁(Scan / Select All / Install Selected,從 v2.8.8 移植)`],
+    15: [`硬體資訊面板`, `RichTextBox(電池、處理器、RAM、顯示卡、解析度、硬碟、OS),深色配色`, `Hardware &amp; System 卡片:Battery、CPU / NPU、RAM、GPU、Storage、Display、Camera、OS、Mainboard/BIOS、Serial。各列載入完成就顯示;多行的值(多顆硬碟 / 多個 Windows 授權)先顯示一行,旁邊有 &#9662; 按鈕展開`],
+    16: [`裝置與周邊`, `頂部狀態列標籤;每 5 秒更新`, `獨立的兩欄卡片,每 5 秒更新:TPM、Speaker、Microphone、Wi-Fi、Camera、Touch monitor | Enrollment、Bluetooth、USB Drive、USB Keyboard、USB Mouse、BitLocker(Off / On / 加密中)。USB Drive 顯示 Connected 時點一下可彈出`],
+    17: [`使用者帳號標籤`, `✓ 顯示在狀態列("OEM" / 網域使用者)`, `導覽列右側顯示使用者名稱`],
+    18: [`上次同步時間`, `頂部狀態列標籤`, `導覽列右側標籤`],
+    19: [`螢幕使用時數`, `✓ Diagnostics 裡有 "Monitor Hours" 按鈕`, `✓ Diagnostics 裡有 "Monitor Hours" 按鈕(DDC/CI)`],
+    20: [`狀態更新間隔`, `每 5 秒(refreshTimer)`, `每 5 秒(_refreshTimer)`],
+    21: [`自動更新的項目`, `Internet、USB 硬碟 / 鍵盤 / 滑鼠、Wi-Fi、藍牙、喇叭、麥克風、TPM、溫度、電池、Secure Boot、驅動`, `Internet、USB 硬碟 / 鍵盤 / 滑鼠、Wi-Fi、藍牙、喇叭、麥克風、TPM、相機、溫度、電池,並重建整個 Devices &amp; Peripherals 面板`],
+    22: [`時鐘更新`, `每 1 秒`, `每 1 秒(透過 Dispatcher.Invoke)`],
+    23: [`啟動時自動校時`, `✓ 啟動 2 秒後靜默校正紐西蘭時間`, `✓ Window_Loaded 時呼叫 SyncAucklandTimeOnStartup()(靜默、背景執行)`],
+    24: [`喇叭測試`, `按鈕 + 音量滑桿(TrackBar,預設 50)`, `按鈕 + 音量滑桿,滑桿改的是 Windows 實際音量(關閉工具時還原,所以 Overview 和 Testing 的喇叭測試都會跟著變);左 / 右聲道測試音`],
+    25: [`麥克風測試`, `3 秒麥克風測試按鈕 + 麥克風監看視窗`, `Quick 圖示:錄 3 秒後自動播放(MCI waveaudio,與 v2.8.8 相同;圖示顯示 Recording… / Playing back… / Done ✓ / Failed);Testing 頁開啟的視窗是真的錄音(真實輸入音量條、Stop and play back、檔案播完即刪)`],
+    26: [`鍵盤測試`, `完整的鍵盤畫面(WinForms Canvas)、低階鉤子,按鍵會亮起`, `完整的鍵盤畫面(WPF Canvas)、低階鉤子(按下 + 放開,PrtSc 也有效),按鍵先閃深綠再保持灰綠;滑鼠區在空白鍵列下方;會吃掉按鍵,所以 Enter / 方向鍵不會觸發主視窗按鈕;淺色主題`],
+    27: [`鏡頭測試`, `鏡頭預覽視窗`, `Quick 圖示:移植的 DirectShow 預覽視窗(Next Camera / Refresh / Windows Camera),單一可重複使用的視窗,隨視窗縮放;預覽失敗時改開 Windows 相機 App`],
+    28: [`USB 測試`, `USB 測試子視窗`, `Quick 圖示:從 v2.8.8 移植的 USB Test:同一實體埠上的裝置(含 USB2 / USB3 配對埠)合併成一列;Debug Info 按鈕會寫入 %TEMP%\\TechCheckPro_usb_debug.txt;淺色主題`],
+    29: [`校時`, `Testing 有按鈕 + 啟動時自動靜默校時`, `Quick 圖示 + Testing 頁的 Time Sync 按鈕(僅手動)`],
+    30: [`Enrollment 檢查`, `Testing 有按鈕;結果以標籤顯示`, `Quick Tests 圖示 + Diagnostics 按鈕。讀取 dsregcmd(加入狀態、DeviceAuthStatus、TenantId)、網域成員、MDM、Autopilot 設定檔和 Autopilot 事件記錄(只採用這台電腦寫的事件,忽略 &quot;not found&quot; 行)。核心資料讀不到時顯示 <b>Unable to verify</b>,不會誤報 Clean。離線時先連預設 Wi-Fi`],
+    31: [`匯出 SN(USB)`, `✓ 追加到 exe 開啟位置資料夾裡的 SN_List.txt(列號、SN、TOUCH、電池、日期;跳過重複;最新在最上面)`, `行為和檔名相同(SN_List.txt,欄位相同);電池欄用 Good / Fail(70%);Quick 圖示 + Testing 頁按鈕`],
+    32: [`匯出 SN(網路共享)`, `&#10003; 匯出到 SMB 網路共享(固定設定、對應磁碟機)`, `&#10003; 使用選定的 Share profile:用它的帳號 / 密碼登入,直接寫到 <code>\\\\server\\folder</code>(不用磁碟機代號);資料夾不存在或密碼錯誤有清楚訊息`],
+    33: [`壞點測試`, `✓ 全螢幕壞點視窗`, `Testing 頁的 Dead Pixel Test`],
+    34: [`健康檢查`, `✓ NVMe 健康、通電時數、損耗、溫度、儲存速度`, `拆成兩個(資料和 v2.8.8 相同):<b>NVMe / SSD Health</b>(SMART、通電時數、讀寫量、壽命使用、損耗、溫度)和 <b>Battery Health</b>(設計 / 滿充容量、健康 %、循環次數、圖例),各有 Quick 圖示和 Diagnostics 按鈕`],
+    35: [`儲存速度測試`, `✓ StorageTestForm`, `✓ Testing 頁的 "Storage Speed Test"(淺色主題)`],
+    36: [`Winget 升級`, `✓ RunWingetUpgrade 按鈕`, `✓ Quick Tests 圖示(第 3 列)+ System 頁按鈕;跑 2 輪、系統管理員;找出 winget.exe 路徑,找不到會警告;按 Enter 後命令視窗關閉,與 v2.8.8 相同`],
+    37: [`測試清單`, `&#10003; ChecklistForm`, `Testing 頁卡片;每項 Pass / Fail,再點一次清除,Reset All,摘要列(已移植)。原本開它的 Overview Tools 圖示現在是 Touch test`],
+    38: [`麥克風監看(獨立)`, `✓ Diagnostics 裡有 "Start Mic Monitor"`, `從麥克風測試流程進入`],
+    39: [`網頁測試(UFO / 鍵盤 / 網路攝影機)`, `✓ 開啟瀏覽器連結`, `✓ Testing 頁的 "Open Web Tests"`],
+    40: [`分享設定`, `&#10003; SMB 分享設定介面(固定一組:路徑、帳號、密碼、更新路徑)`, `&#10003; Share profiles:可存多組、選一組為預設;內建 <b>Blancco</b> profile(舊工具的設定);欄位有 Share IP(附 Test)、帳號、密碼(遮蔽、加密存放)、檔名、Shared Folder(附 Search)。存在 exe 旁的 share_settings.txt,有更改才會建立`],
+    41: [`關機 / 重新啟動 / UEFI`, `頂部標題列的按鈕(powerRow)`, `標題卡上的按鈕(Shutdown / Restart / ⟳ Refresh / UEFI)`],
+    42: [`掃描驅動`, `✓ System Setting 卡片`, `System Setting 頁`],
+    43: [`Wi-Fi 設定 / 連接 / 忘記`, `&#10003; 連接 / 忘記 Assembly Wi-Fi(固定名稱和密碼)`, `Wi-Fi Settings 卡片:<b>Wi-Fi Profiles</b>(可存多組、選預設、Scan、Test)、Connect Wi-Fi(預設 profile)、<b>Disconnect Wi-Fi</b>(移除工具加入的 profile)、Temporary Wi-Fi Profile。內建預設仍是 Assembly`],
+    44: [`Windows Update / 日期與時間 / 裝置管理員`, `✓ System Setting 卡片`, `System Setting 頁`],
+    45: [`Sysprep / 顯示 SID`, `&#10003; System Setting 卡片;Sysprep 詢問 Reboot / Shutdown`, `檢查 OOBE / 稽核模式和待重開機,偵測阻擋項(例如各使用者的 Winget 套件)並可移除,執行 <code>/generalize /oobe /quit /quiet</code>,再驗證結果(ImageState + 記錄)後只提供 <b>Shutdown</b>(沒有 Reboot,避免用掉映像)。關機前會先移除本機副本和它加入的 Wi-Fi profile`],
+    46: [`檢查更新`, `&#10003; 啟動 4 秒後自動檢查,之後網路連上時再檢查(事件 + 30 秒輪詢);有手動按鈕;把 EXE 複製到 LocalAppData 並清掉舊版`, `相同流程,但用自己在 GitHub 的檔案:<code>version_v3.txt</code>、<code>changelog_v3.txt</code>、<code>TechCheckPro.exe</code>。啟動 4 秒後檢查,持續監看直到電腦連網(網路事件 + 15 秒輪詢,讀到版本檔後停止),三段式版本比較,只有真正的 exe 才能取代 USB 上的檔案,寫回原本啟動的資料夾`],
+    47: [`介面框架`, `WinForms`, `WPF:XAML 樣式、平滑漸層、標題卡、動態導覽`],
+    48: [`分頁導覽`, `全部在同一視窗`, `底部導覽列(Overview / Testing / Diagnostics / System Setting)`],
+    49: [`標題卡`, `單純的標籤列`, `藍色漸層卡片,有 ECG 圖示、電腦圖案、操作按鈕`],
+    50: [`Quick Tests 格狀圖示`, `Testing 卡片裡的按鈕`, `Overview 頁分成兩個面板:<b>Quick Tests</b>(Speaker、Microphone、Keyboard、Camera、USB Test、Enrollment)和 <b>Tools</b>(Export SN、Time Sync、Connect Wi-Fi、Winget Upgrade、NVMe / SSD Health、Disconnect Wi-Fi、Touch test、Battery Health、Device Manager)&mdash; 共 15 個圖示。點一下圖示變綠(已測試),再點一下還原`],
+    51: [`狀態圖示列`, `標題裡的標籤`, `4 個並排圖示:Internet · Windows · Drivers · Secure Boot`],
+    52: [`周邊徽章面板`, `狀態列裡的標籤`, `Devices &amp; Peripherals 卡片,用彩色圓點徽章`],
+    53: [`EXE 圖示`, `預設 / 自訂 .ico`, `藍色圓角圖示加 ECG 波形(16/32/48px)`],
+    54: [`捲動版面`, `固定的 TableLayoutPanel 列`, `每個分頁各有 ScrollViewer,內容各自捲動`],
+    55: [`版本標籤`, `右下角的頁尾標籤`, `標題卡裡的版本標籤(由程式讀取,現為 v3.1.12);exe 檔案版本 3.1.12`],
+    56: [`小螢幕用的精簡標題卡`, `—`, `標題卡固定 92 px,圖案縮放適應,標題和 4 個按鈕在同一列;頁面邊距更小,1080p @150% 少捲動`],
+    57: [`可展開的硬體列`, `—`, `Hardware &amp; System 裡多行的值只顯示一行 + ▾ 按鈕可展開 / 收合`],
+    58: [`電池通過 / 失敗顏色`, `"Good" ≥70%,否則 "Fair"(一律綠色)`, `"Good" ≥70%(綠色),"Fail" &lt;70%(紅色)`],
+    59: [`子視窗主題`, `深色視窗`, `所有子視窗(USB、Storage、Camera、Keyboard、Health、Checklist、Drivers&hellip;)都跟著所選主題(預設深色);勾選框、分頁標題、清單標題和停用按鈕在兩種主題下都看得清楚`],
+    60: [`深色 / 淺色主題`, `&mdash;`, `預設深色;標題卡的月亮 / 太陽按鈕切換;選擇存在 USB 的 share_settings.txt;視窗在顯示前就套好主題(不會閃白);Dead Pixel 視窗永遠不套主題`],
+    61: [`頁面版面`, `單一捲動視窗`, `Testing 頁 3 欄;Diagnostics 和 System Setting 2 欄;頁面左右邊距 8 px &mdash; 1080p @150% 不用捲動`],
+    62: [`啟動速度`, `所有硬體資料一次顯示,視窗出現後約 8 秒`, `平行載入,Hardware 每列準備好就顯示(CPU / RAM 約 0.4 秒,OS 約 2 秒);共用一次裝置清單查詢;TPM 只查一次;周邊平行檢查`],
+    63: [`電腦上不留任何東西`, `&#10003; 關閉時刪除本機副本`, `從本機副本執行;關閉、Shutdown、Restart、UEFI、Sysprep 或登出時,會刪除副本、暫存檔和工具加入的所有 Wi-Fi profile(預設、Wi-Fi Profiles 和 Temporary 的);Restart / UEFI 先啟動重啟,同時清理`],
+    64: [`USB 磁碟機彈出`, `&mdash;`, `USB Drive 顯示 Connected &#9167; 時點一下 &rarr; 勾選要彈出的 USB(只有一顆時預設勾好)&rarr; 鎖定 / 卸載 / 彈出;工具啟動的那顆 USB 有標示;OOBE 下也能用;之後顯示 Not found,直到拔掉再插回`],
+    65: [`Windows 狀態圖示`, `只有標籤`, `點 Windows 圖示會開啟 設定 &rarr; 系統 &rarr; 啟用`],
+    66: [`裝置管理員圖示`, `System Setting 裡的按鈕`, `Overview 頁也有 Tools 圖示`],
+    67: [`型號名稱(Lenovo)`, `友善名稱來自 ComputerSystemProduct.Version(例如 Lenovo V14 G5 IRL)`, `移植了相同邏輯(原本顯示機器代碼 83HD)`],
+    68: [`底部列文字`, `CPU / NVMe 溫度、使用者、上次同步`, `連網時顯示 IP 位址、&quot;Powered by Assembly&quot;、&quot;User: &lt;名稱&gt;&quot;、上次同步(溫度留在標題卡)`],
+    69: [`舊工具 &rarr; v3 交接(v2.8.9)`, `v2.8.8:只會更新自己`, `v2.8.9 會詢問是否下載 TechCheck Pro v3,存成舊 exe 旁的 <code>TechCheckPro.exe</code>(舊工具照常可用);之後也會提示較新的 v3 版本。v2.8.9 的 exe、version.txt 和 changelog.txt 在 GitHub_Upload\\old_v2.8.9`],
+    70: [`鏡頭偵測(Devices &amp; Peripherals)`, `用裝置名稱和說明比對鏡頭關鍵字`, `相同比對,另外加入 Windows 列在 &quot;Cameras&quot; 類別下的所有裝置(修正像 &quot;ACER HD User Facing&quot; 這類名稱顯示 Not found)`],
+    71: [`Wi-Fi Profiles`, `&mdash;(只有一個固定的 Assembly Wi-Fi)`, `System Setting &rarr; Wi-Fi Settings &rarr; Wi-Fi Profiles:可存多組 Wi-Fi 名稱、密碼和加密方式(WPA2 / WPA3 / Open),選預設,<b>Scan</b> 附近的 Wi-Fi,<b>Test</b>(連上後按鈕變綠)。profile 以 Wi-Fi 名稱命名;密碼加密存放;內建預設是 Assembly。Connect Wi-Fi 和 Enrollment 檢查都用預設`],
+    72: [`Temporary Wi-Fi Profile`, `&mdash;`, `掃描附近的 Wi-Fi,用密碼連線做一次性使用;關閉工具、關機或重啟時刪除該 profile`],
+    73: [`Disconnect Wi-Fi`, `Forget Assembly Wi-Fi`, `Overview 圖示 &quot;Disconnect Wi-Fi / Remove profiles&quot;:移除工具加入的所有 Wi-Fi profile;只有目前連的是工具加入的 Wi-Fi 才會斷線`],
+    74: [`Internet 圖示與 IP`, `Connected / No Internet`, `Internet 圖示顯示 <code>Connected (Wi-Fi 名稱)</code>;連網時底部列顯示 IP 位址`],
+    75: [`Touch monitor 與 BitLocker 列`, `&mdash;`, `Devices &amp; Peripherals 顯示 Touch monitor(Detected / Not found)和系統碟的 BitLocker 狀態`],
+    76: [`主板 / BIOS`, `&mdash;`, `Hardware 一列顯示:主板廠商 + 型號(例如 DIY 的 MSI 主板)和 BIOS 版本 + 日期`],
+    77: [`觸控測試`, `開啟小畫家`, `內建全螢幕測試:每根手指留下彩色軌跡,顯示目前觸控數 / 同時最多數,16&times;9 格子在各區有反應時變綠(找出死角)`],
+    78: [`Command Line(系統管理員)`, `&mdash;`, `Diagnostics 有一列 CMD 和 PowerShell 按鈕,都以系統管理員開啟`],
+    79: [`Export SN 結果`, `SN、TOUCH、電池、檔案路徑`, `結果視窗也顯示該 SN 在 SN_List.txt 裡的流水號`],
+    80: [`Restart / 重啟進 UEFI`, `清理腳本最後才啟動重啟`, `程式自己啟動重啟(延遲 5 秒)、會重試;電腦無法重啟進韌體(錯誤 203)時,程式保持開啟並提供正常重啟`],
+    81: [`Overview 自動縮放`, `會捲動`, `小螢幕(例如有縮放的 Full HD 筆電)上整個 Overview 會自動縮小(不低於 65 %),不用捲動條`],
+    82: [`更新檢查`, `啟動時和網路連上時檢查`, `v3 同樣概念(啟動 4 秒後、網路事件和 15 秒輪詢,最多失敗 4 次);GitHub 的 raw 檔案會快取幾分鐘,上傳新檔後要等一下再測`]
+  };
+  var SECTIONS = [`介面與版面`, `資料顯示`, `自動更新與計時`, `測試功能`, `診斷`, `系統設定`, `v3.x 新增(v2.8.8 沒有)`, `v3.0.8 – v3.1.12 新增`];
+  var BADGES = { 'Same': '相同', 'New': '新增', 'Changed': '已變更', 'Missing': '缺少' };
+  var STATIC = {
+    h1: `TechCheck Pro — 版本對比`,
+    subtitle: `v2.8.8 / v2.8.9(WinForms,正式版)對比 v3.1.12(WPF)`,
+    cards: [`相符的功能`, `v3.x 新增`, `缺少 / 未移植`, `變更 / 不同`],
+    legend: [` 與 v2.8.8 相同`, ` v3.0.x 新增`, ` v2.9.0 缺少`, ` 行為已變更`],
+    head: [`#`, `功能 / 範圍`, `v2.8.8(WinForms)`, `v3.1.12(WPF)`, `狀態`]
+  };
+
+  var rows = [], sections = [];
+  Array.prototype.forEach.call(document.querySelectorAll('tbody tr'), function (tr) {
+    if (tr.classList.contains('section-row')) { var td = tr.cells[0]; td.setAttribute('data-en', td.innerHTML); sections.push(td); return; }
+    var n = parseInt(tr.cells[0].textContent, 10);
+    for (var i = 1; i <= 3; i++) tr.cells[i].setAttribute('data-en', tr.cells[i].innerHTML);
+    var b = tr.cells[4].querySelector('.badge'); if (b) b.setAttribute('data-en', b.textContent);
+    rows.push({ n: n, tr: tr, badge: b });
+  });
+  var h1 = document.querySelector('h1'), sub = document.querySelector('.subtitle');
+  var cards = document.querySelectorAll('.scard-label'), legs = document.querySelectorAll('.leg'), ths = document.querySelectorAll('thead th');
+  var en = { h1: h1.textContent, sub: sub.textContent, cards: [], legs: [], ths: [] };
+  Array.prototype.forEach.call(cards, function (c) { en.cards.push(c.textContent); });
+  Array.prototype.forEach.call(legs, function (l) { en.legs.push(l.lastChild.nodeValue); });
+  Array.prototype.forEach.call(ths, function (t) { en.ths.push(t.textContent); });
+
+  function set(lang) {
+    var zh = lang === 'zh';
+    document.documentElement.lang = zh ? 'zh-Hant' : 'en';
+    h1.textContent = zh ? STATIC.h1 : en.h1;
+    sub.textContent = zh ? STATIC.subtitle : en.sub;
+    Array.prototype.forEach.call(cards, function (c, i) { c.textContent = zh ? STATIC.cards[i] : en.cards[i]; });
+    Array.prototype.forEach.call(legs, function (l, i) { l.lastChild.nodeValue = zh ? STATIC.legend[i] : en.legs[i]; });
+    Array.prototype.forEach.call(ths, function (t, i) { t.textContent = zh ? STATIC.head[i] : en.ths[i]; });
+    sections.forEach(function (td, i) { td.innerHTML = zh && SECTIONS[i] ? SECTIONS[i] : td.getAttribute('data-en'); });
+    rows.forEach(function (r) {
+      var d = ROWS[r.n];
+      for (var i = 1; i <= 3; i++) {
+        var td = r.tr.cells[i];
+        td.innerHTML = (zh && d) ? d[i - 1] : td.getAttribute('data-en');
+      }
+      if (r.badge) r.badge.textContent = zh ? (BADGES[r.badge.getAttribute('data-en')] || r.badge.getAttribute('data-en')) : r.badge.getAttribute('data-en');
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.lang button'), function (b) { b.classList.toggle('on', b.getAttribute('data-l') === lang); });
+    try { localStorage.setItem('tc_cmp_lang', lang); } catch (e) { }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.lang button'), function (b) {
+    b.addEventListener('click', function () { set(b.getAttribute('data-l')); });
+  });
+  var start = 'en';
+  try { var s = localStorage.getItem('tc_cmp_lang'); if (s === 'zh' || s === 'en') start = s; else if ((navigator.language || '').toLowerCase().indexOf('zh') === 0) start = 'zh'; } catch (e) { }
+  set(start);
+})();
+</script>
 </body></html>
