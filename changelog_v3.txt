@@ -1,3 +1,4 @@
+- Hardware & System: RAM / XMP row (shows the real running speed and whether XMP / EXPO is on); NPU shows N/A when there is none
 - Customize Overview: slot buttons readable in the dark theme, the chosen column count is highlighted
 - Overview: the tiles are now customizable (always 5 x 3): choose the Quick Tests / Tools split and the function of each slot in System Setting > Customize Overview
 - Quick Tests: tick box on each test tile (empty, PASS, FAIL) shared with the Test Checklist; checklist and report get Additional checks (Speaker, Microphone, Keyboard, Camera, Touch screen, Battery)
