@@ -1,3 +1,4 @@
+- Microphone: Devices shows Headset / Built-in, the mic test window shows which microphone is being recorded
 - Devices & Peripherals: text size 12 to match Hardware & System
 - Overview: TPM moved to the status tile row, Secure Boot moved into Devices & Peripherals (Enrollment is now first)
 - Hardware & System: CPU row is now CPU / NPU
