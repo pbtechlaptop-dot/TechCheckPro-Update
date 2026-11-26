@@ -1,9 +1,6 @@
+- Overview tiles stay green after a click until the tool is closed; Export SN tiles turn green only after a successful export
 - Display: native resolution is read only from the monitors connected now (unplugged monitors no longer count); extra monitors are listed (2nd, 3rd ...)
 - RAM row: also shows the slot of each memory module
 - Hardware & System: RAM / XMP row (shows the real running speed and whether XMP / EXPO is on); NPU shows N/A when there is none
 - Customize Overview: slot buttons readable in the dark theme, the chosen column count is highlighted
 - Overview: the tiles are now customizable (always 5 x 3): choose the Quick Tests / Tools split and the function of each slot in System Setting > Customize Overview
-- Quick Tests: tick box on each test tile (empty, PASS, FAIL) shared with the Test Checklist; checklist and report get Additional checks (Speaker, Microphone, Keyboard, Camera, Touch screen, Battery)
-- Report: long system information values shrink to fit (or wrap to 2 lines) so all text is visible and prints completely
-- Test Checklist: PASS / FAIL / N/A for each report item, Auto-fill, and Export report (PC Check Report saved on the USB and the share, opened to check and print to PDF); System Setting: Report settings (company, tester)
-- Microphone: Devices shows Headset / Built-in, the mic test window shows which microphone is being recorded
