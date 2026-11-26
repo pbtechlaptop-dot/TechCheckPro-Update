@@ -1,3 +1,4 @@
+- Display: native resolution is read only from the monitors connected now (unplugged monitors no longer count); extra monitors are listed (2nd, 3rd ...)
 - RAM row: also shows the slot of each memory module
 - Hardware & System: RAM / XMP row (shows the real running speed and whether XMP / EXPO is on); NPU shows N/A when there is none
 - Customize Overview: slot buttons readable in the dark theme, the chosen column count is highlighted
